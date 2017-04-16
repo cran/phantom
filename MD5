@@ -1,4 +1,4 @@
-c16437071dcf7cebc77ab9824cb46ab7 *DESCRIPTION
+bffab8d0d037023bf7e38fd175bdfee8 *DESCRIPTION
 781927050bcdc8142893934f1682e4b6 *NAMESPACE
 ba99c7c4a82e4265da05a15538f82166 *R/RcppExports.R
 3c7d4b44458a69652205dbe9a57e4afc *R/clustering.random.genesets.R
@@ -29,5 +29,5 @@ f106b8ca4429433ff8e841c47cb90352 *man/kegg.geneset.Rd
 512cdd9e6e6c9dc0c7a6cfda84683a75 *man/run.phantom.batch.Rd
 2abfbad9111f5f8d0a630c64965eede0 *man/time.course.data.Rd
 f66d154097bc32af61074a2e50f53256 *src/RcppExports.cpp
-80d79b1cf8fefa45621b419bca95743a *src/c_code.cpp
+238c17049dbf224e22923f3b1c4d49cb *src/c_code.cpp
 8741575bbdaa8068d8978b8099fe40e1 *src/packagename_init.c
