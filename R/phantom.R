@@ -1,9 +1,7 @@
 #' @importFrom stats cutree dist hclust quantile
 #' @import MASS
-#' @import Matrix
 #' @import NMF
 #' @import RColorBrewer
-#' @import cluster
 #' @import gplots
 #' @useDynLib phantom, .registration = TRUE
 #' @importFrom Rcpp evalCpp
