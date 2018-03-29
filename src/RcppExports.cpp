@@ -8,7 +8,7 @@ using namespace Rcpp;
 
 // getNullHetParamC
 List getNullHetParamC(List DataList, List GroupList, int ncluster);
-RcppExport SEXP phantom_getNullHetParamC(SEXP DataListSEXP, SEXP GroupListSEXP, SEXP nclusterSEXP) {
+RcppExport SEXP _phantom_getNullHetParamC(SEXP DataListSEXP, SEXP GroupListSEXP, SEXP nclusterSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -21,7 +21,7 @@ END_RCPP
 }
 // cummaxC
 arma::vec cummaxC(arma::vec x);
-RcppExport SEXP phantom_cummaxC(SEXP xSEXP) {
+RcppExport SEXP _phantom_cummaxC(SEXP xSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -32,7 +32,7 @@ END_RCPP
 }
 // descend2C
 arma::uvec descend2C(arma::vec x, arma::vec y);
-RcppExport SEXP phantom_descend2C(SEXP xSEXP, SEXP ySEXP) {
+RcppExport SEXP _phantom_descend2C(SEXP xSEXP, SEXP ySEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -44,7 +44,7 @@ END_RCPP
 }
 // paretoFrontTest2C
 List paretoFrontTest2C(arma::vec x, arma::vec y, arma::vec cluster_id, arma::uvec cluster_size, arma::vec x_null, arma::vec y_null, arma::uvec rsid_null);
-RcppExport SEXP phantom_paretoFrontTest2C(SEXP xSEXP, SEXP ySEXP, SEXP cluster_idSEXP, SEXP cluster_sizeSEXP, SEXP x_nullSEXP, SEXP y_nullSEXP, SEXP rsid_nullSEXP) {
+RcppExport SEXP _phantom_paretoFrontTest2C(SEXP xSEXP, SEXP ySEXP, SEXP cluster_idSEXP, SEXP cluster_sizeSEXP, SEXP x_nullSEXP, SEXP y_nullSEXP, SEXP rsid_nullSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -58,4 +58,17 @@ BEGIN_RCPP
     rcpp_result_gen = Rcpp::wrap(paretoFrontTest2C(x, y, cluster_id, cluster_size, x_null, y_null, rsid_null));
     return rcpp_result_gen;
 END_RCPP
+}
+
+static const R_CallMethodDef CallEntries[] = {
+    {"_phantom_getNullHetParamC", (DL_FUNC) &_phantom_getNullHetParamC, 3},
+    {"_phantom_cummaxC", (DL_FUNC) &_phantom_cummaxC, 1},
+    {"_phantom_descend2C", (DL_FUNC) &_phantom_descend2C, 2},
+    {"_phantom_paretoFrontTest2C", (DL_FUNC) &_phantom_paretoFrontTest2C, 7},
+    {NULL, NULL, 0}
+};
+
+RcppExport void R_init_phantom(DllInfo *dll) {
+    R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
+    R_useDynamicSymbols(dll, FALSE);
 }

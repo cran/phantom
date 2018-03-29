@@ -5,11 +5,11 @@
 #' @keywords print geneset names
 #' @export
 #' @examples
-#' ## load in the demo geneset in phantom package
-#' data("reactome.geneset")
 #'
 #' ## store all the geneset names in one vector
+#'  \dontrun{
 #' g.names = geneset.names(reactome.geneset)
+#' }
 
 geneset.names = function(geneset_list = NULL){
   geneset_names = c()

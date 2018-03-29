@@ -2,18 +2,18 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 getNullHetParamC <- function(DataList, GroupList, ncluster) {
-    .Call('phantom_getNullHetParamC', PACKAGE = 'phantom', DataList, GroupList, ncluster)
+    .Call(`_phantom_getNullHetParamC`, DataList, GroupList, ncluster)
 }
 
 cummaxC <- function(x) {
-    .Call('phantom_cummaxC', PACKAGE = 'phantom', x)
+    .Call(`_phantom_cummaxC`, x)
 }
 
 descend2C <- function(x, y) {
-    .Call('phantom_descend2C', PACKAGE = 'phantom', x, y)
+    .Call(`_phantom_descend2C`, x, y)
 }
 
 paretoFrontTest2C <- function(x, y, cluster_id, cluster_size, x_null, y_null, rsid_null) {
-    .Call('phantom_paretoFrontTest2C', PACKAGE = 'phantom', x, y, cluster_id, cluster_size, x_null, y_null, rsid_null)
+    .Call(`_phantom_paretoFrontTest2C`, x, y, cluster_id, cluster_size, x_null, y_null, rsid_null)
 }
 

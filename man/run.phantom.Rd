@@ -22,14 +22,15 @@ run.phantom(data = NULL, geneset_list = NULL, query_geneset = NULL,
 This function allows user to run individual geneset heterogeneity analysis with phantom
 }
 \examples{
-## load in the demo data and geneset in phantom package
+## load in the demo data in phantom package
 data("time.course.data")
-data("reactome.geneset")
 
 ## store the analysis result in an object
+\dontrun{
 obj = run.phantom(data = time.course.data, geneset_list = reactome.geneset,
                   query_geneset ='REACTOME_ANTIVIRAL_MECHANISM_BY_IFN_STIMULATED_GENES',
                   ncluster = 2, nsample = 1000)
+}
 }
 \keyword{phantom}
 \keyword{run}

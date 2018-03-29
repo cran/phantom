@@ -13,24 +13,56 @@ vignette: >
 Phantom package is designed to investigate the heterogeneous gene sets in time-course data. There are two different modes of Phantom analysis: Individual gene set mode and batch mode. 
 
 
+## Data and geneset input
+
+To run Phantom analysis, user needs to provide the time course data and the geneset to be investigated. 
+The data file should be a CSV file that follows these three rules:
+
+1). The first cell (row 1, column A) of the CSV file must be **'gene_symbol'**;
+
+2). The row names of the file must be the official gene symbols and should be unique;
+
+3). The columns should be ordered according to time.
+
+Then the function `load.data()` will be used to load in this data file:
+```{r,eval=F}
+# load in data set
+time.course.data = load.data(path_to_input_file/input_file_name.csv)
+```
+
+The gene set used in the analysis can be downloaded from GSEA MSigDB website http://software.broadinstitute.org/gsea/msigdb **(Download the GMT files with gene symbols)**, and load in with the function  `load.geneset()`:
+```{r,eval=F}
+# load in geneset 
+geneset = load.geneset(path_to_geneset_file/geneset.gmt)
+```
+
+The names of all the gene sets in the loaded geneset list will be put into a vector when running the function `geneset.names()`. For Phantom indicidual gene set mode, user can find the name of the query gene set in this vector. 
+
+```{r,eval=F}
+# print the names of genesets in reactome.geneset
+g.names = geneset.names(geneset)
+```
+
+
 ## Phantom individual gene set mode
 
-To run Phantom demo in individual gene set mode, use the following code:
+In this individual gene set mode, we use the sample `time.course.data` embeded in Phantom package, and the REACTOME geneset, which can be downloaded from the GSEA MSigDB website (see link in section above).
+To run Phantom demo in individual gene set mode, use the scripts below:
 ```r
 library(phantom)
 ```
 ```{r,eval=F}
-# load in the demo data and demo geneset reactome geneset in phantom package
-
+# load in the demo data in phantom package
 data("time.course.data")
-data("reactome.geneset")
-```
-```r
-# run individual gene set mode phantom analysis and store the result in an object
 
+# load in the user downloaded REACTOME geneset (GMT file)
+reactome.geneset = load.geneset(path_to_geneset_file/REACTOME.geneset.gmt)
+
+# run individual gene set mode phantom analysis and store the result in an object
 obj = run.phantom(data = time.course.data, geneset_list = reactome.geneset,
 query_geneset='REACTOME_ANTIVIRAL_MECHANISM_BY_IFN_STIMULATED_GENES', ncluster = 2, nsample = 1000)
 ```
+
 When executing the `run.phantom` function, the general information of Phantom analysis will be printed on the screen (shown below), and the result figure will be generated. 
 ```r
 ## Gene set: REACTOME_ANTIVIRAL_MECHANISM_BY_IFN_STIMULATED_GENES
@@ -42,48 +74,26 @@ When executing the `run.phantom` function, the general information of Phantom an
 ![](fig_individual_run.PNG)
 
 
-The names of all the gene sets in the loaded geneset list, e.g. reactome.geneset, will be put into a vector when running the function `geneset.names`. User can find the name of the query gene set in this vector. 
-
-```{r,eval=F}
-# print the names of genesets in reactome.geneset
-
-g.names = geneset.names(reactome.geneset)
-g.names
-
-## [1] "REACTOME_GLYCOGEN_BREAKDOWN_GLYCOGENOLYSIS"                                           
-## [2] "REACTOME_TRANSLATION""             
-## [3] "REACTOME_PYRIMIDINE_CATABOLISM"
-## [4] "REACTOME_RNA_POL_III_TRANSCRIPTION_INITIATION_FROM_TYPE_2_PROMOTER"
-## ...
-```
-
 ## Phantom batch mode
+
+In Phantom batch mode, because of the computing time limit, we use the smaller geneset KEGG geneset as example for the analysis. Again, user can download the KEGG geneset from GSEA MSigDB website. 
 To run Phantom in batch mode, use the following code:
 ```{r,eval=F}
-# load in the demo data and demo geneset kegg geneset in phantom package
-
+# load in the demo data in phantom package
 data("time.course.data")
-data("kegg.geneset")
-```
-```r
+
+# load in the user downloaded KEGGE geneset (GMT file)
+kegg.geneset = load.geneset(path_to_geneset_file/kegg.geneset.gmt)
+
 # run batch mode phantom analysis and store the result in an object
 
 obj = run.phantom.batch(data = time.course.data, geneset_list = kegg.geneset,
                   maxncluster = 5, nsample = 1000, report_pval = 0.05, report_nmin = 5,
                   output_dir = file.path(getwd(),'/phantom_result'))
 ```
+
 For Phantom batch mode, the analysis results will be put into a PDF file in the 'phantom_result' subdirectory under current working directory by default. User can also specify the output file directory by modifying the `output_dir` parameter.
 
-## User data and gene set input
 
-User's own input data files can be imported through the following function:
-```r
-load.data(path-to-input-file)
-```
-Also, we allow users to provide their own gene set file by using the following command:
-```r
-load.geneset(path-to-geneset-file)
-```
-
-
+_____________________________________________________________________________________
 

@@ -3,6 +3,7 @@
 #' @import NMF
 #' @import RColorBrewer
 #' @import gplots
+#' @import qusage
 #' @useDynLib phantom, .registration = TRUE
 #' @importFrom Rcpp evalCpp
 #' @importFrom grDevices colorRampPalette dev.off pdf
@@ -77,10 +78,10 @@ phantom<-function(data,
     ## random sampling
     time1 = proc.time()
     obj.random = clustering.random.genesets(data = data,
-                                                     nsample=nsample,
-                                                     nsize=x.nrow,
-                                                     ncluster=ncluster,
-                                                     random_clusters = random_clusters)
+                                            nsample=nsample,
+                                            nsize=x.nrow,
+                                            ncluster=ncluster,
+                                            random_clusters = random_clusters)
     random_geneset_stat = obj.random$obj
     random_clusters = obj.random$random_clusters
     time2 = proc.time()
@@ -90,12 +91,12 @@ phantom<-function(data,
     time1 = proc.time()
 
     pf = paretoFrontTest2C(x.cluster.d,
-                            x.cluster.p,
-                            c(1:ncluster),
-                            x.cluster.size,
-                            random_geneset_stat$x.cluster.d.null.list,
-                            random_geneset_stat$x.cluster.p.null.list,
-                            random_geneset_stat$x.cluster.rsid.null.list)
+                           x.cluster.p,
+                           c(1:ncluster),
+                           x.cluster.size,
+                           random_geneset_stat$x.cluster.d.null.list,
+                           random_geneset_stat$x.cluster.p.null.list,
+                           random_geneset_stat$x.cluster.rsid.null.list)
     pf$color = colorRampPalette(brewer.pal(11,"Spectral"))(pf$nlevel)
     pf$cluster.color = MYCLUSTERCOLOR[pf$cluster.id]
     time2 = proc.time()

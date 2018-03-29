@@ -13,11 +13,11 @@ geneset.names(geneset_list = NULL)
 This function allows user to print all the geneset names in the loaded geneset list such that user can find the specific query_geneset name for run.phantom funciton.
 }
 \examples{
-## load in the demo geneset in phantom package
-data("reactome.geneset")
 
 ## store all the geneset names in one vector
+ \dontrun{
 g.names = geneset.names(reactome.geneset)
+}
 }
 \keyword{geneset}
 \keyword{names}

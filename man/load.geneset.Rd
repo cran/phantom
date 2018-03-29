@@ -2,16 +2,16 @@
 % Please edit documentation in R/load.geneset.R
 \name{load.geneset}
 \alias{load.geneset}
-\title{Load geneset function}
+\title{Load geneset in gmt file format}
 \usage{
 load.geneset(geneset_file)
 }
 \arguments{
-\item{geneset_file}{the genesets data file path and name on user's local machine}
+\item{geneset_file}{the genesets gmt file path and name on user's local machine}
 }
 \description{
-This function allows user to load in the genesets in a format that can be used by
-run.phantom and run.phantom.batch functions.
+This function allows user to load in the genesets that are downloaded from GSEA (gmt format)
+into a format that can be used by run.phantom and run.phantom.batch functions.
 }
 \keyword{geneset}
 \keyword{load}
